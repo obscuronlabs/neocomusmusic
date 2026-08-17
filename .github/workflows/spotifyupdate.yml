@@ -1,0 +1,27 @@
+name: Spotify Auto Update
+
+on:
+  schedule:
+    - cron: '0 7 * * 5'  # Her Cuma 10:00 Türkiye saati (UTC+3)
+  workflow_dispatch:       # Elle de çalıştırılabilir
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update tracks from Spotify
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_PLAYLIST_ID: ${{ secrets.SPOTIFY_PLAYLIST_ID }}
+        run: python3 scripts/update_tracks.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "Neocomus Bot"
+          git config user.email "neocomusmusic@gmail.com"
+          git add index.html
+          git diff --staged --quiet || git commit -m "Auto: Spotify tracks updated $(date +'%Y-%m-%d')"
+          git push
