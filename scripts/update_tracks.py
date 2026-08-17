@@ -20,7 +20,7 @@ token = json.loads(urllib.request.urlopen(req).read())['access_token']
 
 # Playlist'teki şarkıları çek
 req2 = urllib.request.Request(
-    f'https://api.spotify.com/v1/playlists/{PLAYLIST_ID}/tracks?limit=50&fields=items(track(id,name))',
+    f'https://api.spotify.com/v1/playlists/{PLAYLIST_ID}/tracks?limit=50',
     headers={'Authorization': f'Bearer {token}'}
 )
 data = json.loads(urllib.request.urlopen(req2).read())
