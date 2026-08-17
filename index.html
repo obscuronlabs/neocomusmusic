@@ -254,12 +254,8 @@
     .nav-links { display: none; }
   }
 
-  @media (max-width: 480px) {
-    .music-grid-responsive { grid-template-columns: repeat(2, 1fr) !important; }
-  }
-  @media (min-width: 481px) and (max-width: 900px) {
-    .music-grid-responsive { grid-template-columns: repeat(3, 1fr) !important; }
-  }
+  @media (max-width: 600px) { #music-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+  @media (min-width: 601px) and (max-width: 1024px) { #music-grid { grid-template-columns: repeat(3, 1fr) !important; } }
 </style>
 </head>
 <body>
@@ -366,7 +362,7 @@
       </p>
     </div>
     
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.5px; background: rgba(201,168,76,0.1);">
+        <div id="music-grid" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.5px; background: rgba(201,168,76,0.1);">
       <!-- I RISE -->
       <div class="music-card" style="background: var(--black); padding: 0; position: relative; overflow: hidden; transition: background 0.3s;" onmouseover="this.style.background='var(--black-3)'" onmouseout="this.style.background='var(--black)'">
         <div style="width: 100%; aspect-ratio: 1 / 1; overflow: hidden; position: relative;">
