@@ -256,6 +256,45 @@
 
   @media (max-width: 600px) { #music-grid { grid-template-columns: repeat(2, 1fr) !important; } }
   @media (min-width: 601px) and (max-width: 1024px) { #music-grid { grid-template-columns: repeat(3, 1fr) !important; } }
+
+  /* LYRICS MODAL */
+  .lyrics-modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(5,5,5,0.92); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+  }
+  .lyrics-modal-overlay.active { display: flex; }
+  .lyrics-modal {
+    background: var(--black-3); border: 1px solid rgba(201,168,76,0.2);
+    max-width: 560px; width: 90%; max-height: 80vh;
+    display: flex; flex-direction: column;
+  }
+  .lyrics-modal-header {
+    padding: 1.5rem 2rem 1rem; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .lyrics-modal-title {
+    font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--gold);
+  }
+  .lyrics-modal-close {
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--white-dim); font-size: 1.2rem; border: none; background: none;
+    transition: color 0.2s;
+  }
+  .lyrics-modal-close:hover { color: var(--gold); }
+  .lyrics-modal-body {
+    padding: 1.5rem 2rem 2rem; overflow-y: auto; flex: 1;
+    font-size: 0.78rem; line-height: 1.9; color: var(--white-dim);
+    letter-spacing: 0.04em; white-space: pre-line;
+  }
+  .lyrics-btn {
+    font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(201,168,76,0.15); cursor: pointer; background: none;
+    transition: all 0.3s;
+  }
+  .lyrics-btn:hover { color: var(--gold); border-color: rgba(201,168,76,0.4); }
 </style>
 </head>
 <body>
@@ -381,6 +420,7 @@
             <a href="https://open.spotify.com/track/7p9iHqBmCVrvogztoWxdUU" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=MIDNIGHT+IN+BLUE+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('MIDNIGHT IN BLUE')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -402,6 +442,7 @@
             <a href="https://open.spotify.com/track/091fEa13PDnIF9o4K1Q153" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=BURDAYIM+HEP+BURDAYIM+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('BURDAYIM HEP BURDAYIM')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -423,6 +464,7 @@
             <a href="https://open.spotify.com/track/3ZtxbOeCaD5o0RkJt3tKMT" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=HEY+DARLING+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('HEY DARLING')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -444,6 +486,7 @@
             <a href="https://open.spotify.com/track/4fKdYCY39PGKDV1RaVwrST" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=NO+APOLOGY+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('NO APOLOGY')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -465,6 +508,7 @@
             <a href="https://open.spotify.com/track/2YmLpUptn4gliRbHiMSKqE" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=YOLUN+TOZU+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('YOLUN TOZU')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -486,6 +530,7 @@
             <a href="https://open.spotify.com/track/75vHDh6xJJD9G05IzUoBam" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=HİÇLİK+KAPISI+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('HİÇLİK KAPISI')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -507,6 +552,7 @@
             <a href="https://open.spotify.com/track/2dMaf2IN4OPYFuQCnLFL0M" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=EGE+ATEŞİ+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('EGE ATEŞİ')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -528,6 +574,7 @@
             <a href="https://open.spotify.com/track/78t27cq9WgStjFX8gbk3cl" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=HU+FREKANSI+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('HU FREKANSI')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -549,6 +596,7 @@
             <a href="https://open.spotify.com/track/0VvbCdtJQ38BwDSLcuvkpy" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=OLD+VINYL+HALO+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('OLD VINYL HALO')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -570,6 +618,7 @@
             <a href="https://open.spotify.com/track/6dYCzGxNPibTmQmb7WvtDi" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=NEON+LULLABY+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('NEON LULLABY')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -591,6 +640,7 @@
             <a href="https://open.spotify.com/track/1na8EMImIlHoIcMoqtgiUa" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=KENDİME+GEÇ+KALDIM+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('KENDİME GEÇ KALDIM')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -612,6 +662,7 @@
             <a href="https://open.spotify.com/track/64htBHgi9Jp9dGGN7nyOiQ" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=KARİMDA+KARİM+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('KARİMDA KARİM')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -633,6 +684,7 @@
             <a href="https://open.spotify.com/track/25cQTU1yuhmR9LjH9L6S9R" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=KOCAMDA+KOCAM+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('KOCAMDA KOCAM')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -654,6 +706,7 @@
             <a href="https://open.spotify.com/track/2ojtLbcr9lxhq0EB5I8f1E" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=MIDNIGHT+CARAVAN+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('MIDNIGHT CARAVAN')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -675,6 +728,7 @@
             <a href="https://open.spotify.com/track/5XD1GKQRsmJrhNuXn6Rk3P" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=RIDE+THROUGH+FIRE+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('RIDE THROUGH FIRE')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -696,6 +750,7 @@
             <a href="https://open.spotify.com/track/0Pn9BfFiEFMUVIsmGjLurT" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=SENSİZ+KALAN+YILLAR+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('SENSİZ KALAN YILLAR')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -717,6 +772,7 @@
             <a href="https://open.spotify.com/track/7bniVrVBPAED2YK5exocUM" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=ATEŞİN+DİLİ+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('ATEŞİN DİLİ')">Lyrics</button>
           </div>
         </div>
       </div>
@@ -738,6 +794,7 @@
             <a href="https://open.spotify.com/track/1Ham8rUrFLnK9ZuRRziemo" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
             <a href="https://music.youtube.com/search?q=I+RISE+olivia+oya+kaptan" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
             <a href="https://music.apple.com/us/artist/olivia-oya-kaptan/1895782369" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('I RISE')">Lyrics</button>
           </div>
         </div>
       </div>    </div>
@@ -1297,5 +1354,711 @@ function enterSite() {
 window.addEventListener('load', buildDots);
 </script>
 
+
+<!-- LYRICS MODAL -->
+<div class="lyrics-modal-overlay" id="lyricsOverlay" onclick="if(event.target===this)closeLyrics()">
+  <div class="lyrics-modal">
+    <div class="lyrics-modal-header">
+      <div class="lyrics-modal-title" id="lyricsTitle"></div>
+      <button class="lyrics-modal-close" onclick="closeLyrics()">&#x2715;</button>
+    </div>
+    <div class="lyrics-modal-body" id="lyricsBody"></div>
+  </div>
+</div>
+<script>
+const lyricsDB = {
+  "ATEŞİN DİLİ": `Sss… Beni duy… Gözlerin konuşuyor…
+
+VERSE 1
+Gecenin üstüne düşer tenin
+Dalgalar gibi sarar beni derin
+Bir bakışınla yanar şehir
+Bu yangını kim söndürebilir?
+Kalbim ritim, bedenim suç
+Gülüşün zehir, dudakların uç
+Yaklaştıkça kopuyor aklım
+Bu geceye adımı yazdın
+
+PRE-CHORUS
+Sanki zaman durur yanımda
+Kokun kalır her anımda
+Ben sana düşerken yavaşça
+Gökyüzü bile kıskanır aslında…
+Don't you stop, don't you hide
+You're my fire in the night
+
+CHORUS
+Ateşin dili, dili
+Yakıyor beni diri diri
+Baila conmigo, mami
+Tonight you're coming with me
+Ateşin dili, dili
+Kalbime vurdu seri seri
+No me digas "sorry"
+Benim ol hadi
+
+VERSE 2
+Şehir uyur ama biz uyumayız
+Bu geceye sınır koyamayız
+Tenin tuz gibi, yaz gibi sıcak
+Kalbim "gel" der, aklım susar
+
+PRE-CHORUS 2
+Beni çağırıyor o bakışların
+Gecenin kalbinde kaybolduk
+Bésame lento, sin razón
+Dame fuego, corazón
+
+BRIDGE
+Gözlerin… bir suç gibi
+Dudakların… bir mühür gibi
+Say my name… Say it louder…
+Habibi… Mi amor… no te vayas…
+
+OUTRO
+Ateşin dili… dili…
+Ya habibi… Baila conmigo…`,
+  "EGE ATEŞİ": `Sss… Ege… Tonight… Opa…
+
+VERSE 1
+Deniz tuzu saçımda, ay ışığı tenimde
+Gözlerin bir oyun gibi, düşerim her seferinde
+Bu gece rüzgar bile kıskanır bizi sahilde
+Kalbim sanki davul gibi, vurur deli deli içimde
+Gülüşün rakı gibi, başımı döndürür yavaş
+Kader mi bu, günah mı? Bilmiyorum… ama çok sarhoş
+
+PRE-CHORUS
+Bir adım at, yaklaş bana
+Ege yanar dudaklarında
+Come with me, don't be shy…
+Tonight we touch the sky…
+
+NAKARAT
+Ege ateşi! ateşi!
+Yakıyor beni delicesine!
+Opa opa! gel hadi!
+Bouzouki gibi kalbim hızlı!
+Ege ateşi! ateşi!
+Düşürür beni gizlice!
+Yasu baby, kal hadi!
+Bu gece bizden iz kalsın sahilde!
+
+VERSE 2
+Kumsalda izlerimiz, dalgalar silse de
+Dudakların yasak gibi, dokunurum bile bile
+Ela, ela, agapi mou…
+Kardia mou, kardia sou…
+
+OUTRO
+Ege ateşi… Opa opa… Yasu baby… Tonight…`,
+  "HU FREKANSI": `"Kapıyı çalan ben değilim…"
+Hu… Hu… Hu…
+
+VERSE 1
+Benim gölgem bile yoruldu taşımaktan beni
+Dünya döner, ben dönerim, içimde var bir yeni
+Zaman kırık plak gibi, çalıyor aynı sesi
+Ama ben sustuğum an, evren çıkarır nefesi
+Ruhumun omzunda şeytan, öbüründe derviş
+Biri "yak", biri "sus", biri "dön" der, biri "git"
+
+PRE-CHORUS
+Sorma bana "kimsin" diye
+Ben adımı yaktım küllere
+Bir ney üfler içimde
+Kırar zinciri hücre hücre
+
+NAKARAT
+Hu frekansı! Hu frekansı!
+Kafamda dönüyor bu dünyanın dansı!
+Kırıldı aynalar, başladı ayin faslı!
+Dön dön dön! Kırıl kırıl kırıl!
+Bu gece ben değilim! Bu gece delir!
+
+VERSE 2
+Ney ağlar, gitar bağırır, davul kırar kalbimi
+Ben Allah'ı ararken, bulurum kendi kendimi
+Bir adım sağ: günah
+Bir adım sol: dua
+İkisini aynı anda içtim
+Şimdi damarlarımda sema
+
+BRIDGE
+Nefes… Hu… Hu… Hu….
+"Beni benden al…"
+
+OUTRO
+Hu… Hu… Hu…
+"Kapıyı çalan ben değilim…"`,
+  "HİÇLİK KAPISI": `Sustuğum yerde başlar ses
+Adım yok… Ben yok…
+
+VERSE 1
+Bir gölgeydim, kendim sandım
+Aynaya baktım, yandım
+Kalbim bir eski kapı
+Açılır kapanır adı
+Ne gördümse geçip gitti
+Bana kalan… yalnız tadı
+
+PRE-CHORUS
+Korkma, dediler, yürüdüm
+Gözlerim kapalı gördüm
+İçimde bir sonsuzluk büyüdü
+
+NAKARAT
+Ben ben değilim artık
+Adım yok, izim yok
+Bir damlaydım denize
+Deniz oldum… sözüm yok
+Dön dön dön, sema gibi
+Beni benden alan şey
+Sen misin, ben miyim
+
+VERSE 2
+Geceye sordum: Nerdesin
+Ay dedi: Senin içindeyim
+Bir saz çalar uzaklardan
+Telinde dua saklı
+Kainatın dili haklı
+
+BRIDGE
+Nefes al… Nefes ver…
+Bir adım daha… Ve yok ol
+
+OUTRO
+Hu… Hu… Hu
+Sustuğum yerde başlar ses
+Ben yok… ben yok… ben yok`,
+  "YOLUN TOZU": `Hey… Yol uzun… Gönül yorgun…
+
+Yolun tozu çöktü üstüme
+Bir yemin kaldı göğsümde
+Ne giden geri döndü
+Ne kalan rahat etti bu evde
+Güneş batar, içim yanar
+Bir at kişner uzaklardan
+Kader denen şu eski masal
+Yine vurur aynı yerden
+
+NAKARAT
+Yolun tozu, gözümün yaşı
+Gurbet vurdu, kalbim telaşlı
+Ben sevdama söz verdim de
+Dünya yıkılsa dönmem artık
+Yolun tozu, rüzgarın sesi
+Bağlamamda kaldı hevesim
+Bir gün gelir sorarsan bana
+Benim adım… hasretin kendisi
+
+Bir çift çizme, eski bir kemer
+Amerika yollarında
+Anadolu düşer içime her sefer
+Ama bir türkü çalınca
+Sanki annem oturur yanı başımda
+
+Hey gidi dünya…
+Bir yol biter… Bir yol başlar…
+
+Yol uzun… Gönül yorgun…
+Ama sevda bitmez…`,
+  "KENDİME GEÇ KALDIM": `Bir ses var içimde…
+Ne susturabiliyorum…
+Ne dinleyebiliyorum…
+
+VERSE 1
+Gözüm açık ama ben hep rüyadayım,
+Kendime yabancı, kendime misafirim.
+Aynaya bakıyorum, kim bu adam?
+İçimde çocuk ağlıyor… ben "sus" diyorum.
+Herkese "iyiyim" diye gülüyorum,
+Gece olunca içimde eksiliyorum.
+
+PRE-CHORUS
+Ve soruyorum kendime…
+"Ben kimim?" diye.
+Bütün yollar aynı yere çıkıyor:
+Benim içime.
+
+CHORUS
+Ben kendime ne yaptım?
+Kaç yıl sustum, kaç yıl yandım?
+Hayat geçip giderken
+Ben niye hep aynı yerde kaldım?
+Kalbim kırık, yüzüm sağlam…
+Bir gün ölürsem eğer
+Beni kim hatırlayacak gerçekten?
+
+VERSE 2
+İnsan "yarın" der, yıllar olur,
+Bir gün uyanır… saçına aklar vurur.
+Kendini kandırmak en kolay günah,
+Çünkü yalanı söyleyen de sen…
+inananda sensin.
+
+BRIDGE
+Ben…
+çok kişiye yetiştim de…
+kendime geç kaldım.
+
+FINAL CHORUS
+Ben kendime ne yaptım?
+Düşlerim vardı, ben gömdüm hepsini…
+Bir gün ölürsem eğer
+Sahi, ben yaşamış sayılır mıyım?
+
+OUTRO
+Bazen hayat…
+öldürmez…
+Sadece… Nefessiz bırakır.
+Ve en acısı…
+İnsan o uykudan çok geç uyanır.`,
+  "MIDNIGHT CARAVAN": `CHORUS
+Roll with the midnight caravan,
+Rhythm pulling me where the night began.
+Sax in the wind, drums in my veins,
+Every step I take breaks old chains.
+
+VERSE 1
+Lantern lights flicker on the narrow street,
+Melody cuts through the air, sharp and sweet.
+My soul paints circles in the smoky sky,
+Clarinet answers back with a playful cry.
+
+VERSE 2
+Footsteps echo like a heartbeat's call,
+Jazz on the corner, shadows on the wall.
+Hopes drifts softly through the neon haze,
+Old world and new world meet in the blaze.
+
+BRIDGE
+Spinning like dust in a desert storm,
+Melodies twist, collide, transform.
+Every note a traveler, every rhythm a guide,
+Carrying stories from the mountainside.
+
+FINAL CHORUS
+Roll with the midnight caravan,
+Rhythm pulling me where the night began.
+Sax in the wind, drums in my veins,
+Every step I take breaks old chains.`,
+  "NO APOLOGY": `I don't knock, I kick the door in
+I don't ask, I take what's mine
+Every cage you built around me
+Became the weapon in my hands
+
+You called it disrespect
+I called it staying alive
+I stopped begging for permission
+The day I crawled out of the grave you dug
+
+So go on, underestimate me
+Go on, tell me I'm too loud
+I've been buried, burned, and broken
+Still I rise, still I stand proud
+
+NO APOLOGY — none coming, none owed
+I built this kingdom with these bloodied hands, alone
+You don't scare me, you don't own me
+You just watch me as I burn through it all
+
+They said lower your voice, be smaller, be sweet
+I tried it once, almost died on my knees
+Now every scar you gave me
+Is a tattoo I wear with pride
+
+Every time you thought you buried me
+Was another root growing underneath
+
+You wanted quiet
+You wanted broken
+You wanted a doll that never spoke back
+Wrong voice. Wrong woman. Wrong lifetime.
+
+I'm not asking. I'm coming through.
+NO APOLOGY. NONE COMING. NONE OWED.`,
+  "HEY DARLING": `Bu yolun tozuyla geldim kapına
+Omuzlarımda yılların ağırlığı var
+Bir elinde kahve, bir elinde umut
+Beni bekleyen tek kişi sensin yar
+
+Rüzgâr yüzümü keser ama alıştım
+Güneş batar, ben yine sana karıştım
+Dünya dönsün, yollar uzasın
+Sen gülünce bütün yüklerim azalsın
+
+Hey darling, sen benim evimsin
+Düştüğümde tutan tek yerimsin
+Kalbim kırık olsa da gülerim
+Çünkü sen varsın ya… şekerim
+
+Hey darling, sen benim nefesimsin
+Bu deli dünyanın tek gerçeğisin
+Yolun tozuyla geldim sana
+Kalbim sende… başka yerde durmaz asla
+
+Bir gün yorulursam, dizlerim titrerse
+Beni kaldıran yine sen olacaksın
+Bir gün dünya susarsa, herkes giderse
+Sesimi duyan tek kişi sen kalacaksın
+
+Bir şarkım var, yıllardır sakladım
+Adını yazdım her nakışına
+Bir ömrüm var, sana adadım
+Kaderim sensin… yolumun başında`,
+  "BURDAYIM HEP BURDAYIM": `Sessizlik konuşur bazen
+Yaprakların diliyle
+Ben susarken sen anlat
+Rüzgarın sesiyle
+
+Taş üstünden su akar
+Zamanı unutturur
+Her damla bir cümle gibi
+Kalbime dokunur
+
+Aç kollarını, dinle beni
+Toprağın nabzı gibi
+Burdayım, hep burdayım
+
+Bırak aksın, bırak essin
+Rüzgar gibi özgür
+Ne bir söz ne bir yük
+Sadece bu an, sadece bu ses
+
+Kuşlar bilir, sular bilir
+Ben de biliyorum şimdi
+Burdayım, hep burdayım
+
+Şehrin gürültüsü kaldı geride
+Orman fısıldıyor adımı
+Yorgunluğum eriyor
+Bu sessiz, bu sade ruhumda
+
+Belki de her şey burda başlar
+Belki de her şey burda biter
+Ben sadece dinlemeyi öğreniyorum
+Doğanın söylediği o eski şarkıyı
+
+Sadece bu an, sadece bu ses`,
+  "MIDNIGHT IN BLUE": `The city wears its diamonds
+Scattered soft along the rain
+And every streetlight whispers
+Something close to your old name
+
+I sip a little silence
+From a glass that's almost gone
+And I watch your shadow dancing
+To a half-remembered song
+
+The moon leans on the window
+Like it knows just what I've lost
+And the smoke curls into circles
+Counting up the hidden cost
+
+Midnight in blue
+And I'm still chasing you
+Through saxophone confessions
+And the things I can't undo
+Midnight in blue
+As the lights burn down so slow
+I'm still holding onto echoes
+Of a love I can't let go
+
+A trumpet down the alley
+Sends a lonely prayer through the air
+While the piano keeps on telling
+Of a heart that isn't there
+
+My heels on empty sidewalks
+Keep a rhythm soft and loose
+While the memory of your fingers
+Still won't let this moment loose
+
+I loved you like a melody
+Too beautiful to keep
+Now every note comes circling back
+To a promise we didn't keep
+
+Midnight in blue
+Let the whole world fade away
+'Cause I'm still caught in the afterglow
+Of the words you'd never say
+
+Midnight… in blue
+Mm…`,
+  "SENSİZ KALAN YILLAR": `Rüzgâr eser Anıtkabir'in taşlarında
+Her adımda bir hatıran dokunur bana
+Sensiz büyüyen yılların yükü ağır
+Bir millet bekler hâlâ, gözleri yollarda
+
+Sen gittin, biz kaldık yarım kalan hayalinle
+Her sabah doğan güneş, adını fısıldar içimde
+Yolunu kaybetmesin diye bu ülke
+Kalbimizde nöbetteyiz, senin izinde
+
+Bir çocuk "Atam" derken titrer sesi
+Sanki sen duyuyorsun, sarıyorsun hepsini
+Biz seni görmedik ama sevdik en derinden
+Bir baba gibi, bir ışık gibi, bir yemin gibi
+
+Belki bir gün buluşuruz maviliklerde
+Hesap sorarız zamana, ayırdığı günlere
+Ama bil ki Atam, sensiz geçen her nefeste
+Bir özlem büyür sessizce, memleketin kalbinde
+
+Sen gittin, biz kaldık ama sönmedi ateşin,
+Her çocuğun gözünde parlıyor geleceğin.
+Bu millet var oldukça, bu toprak nefes aldıkça,
+Adın yaşayacak Atam, sonsuza kadar içimizde.`,
+  "I RISE": `I kept your note in my drawer
+Next to a bus pass and a scar
+Old paint on my hands
+New prayer in my chest
+
+My mood swings like a door
+Blue one minute, red the next
+I wore my bruise like a crown
+Then I learned to take it off
+
+We were kids in a borrowed summer
+Running home with scraped-up knees
+Now the world keeps asking louder
+"Who are you when they won't agree?"
+
+I rise, I rise
+With the old songs in my bones
+I rise, I rise
+From the dust and the stone
+Your name fades soft
+But it taught me how to stay
+I rise, I rise
+I am change, I am the wave
+
+My friend said, "Don't let them shrink you"
+So I sang with a cracked front tooth
+On a corner full of paper signs
+And a drumbeat under the roof
+
+Oh, let the memory burn slow
+Like a candle in the rain
+I can miss you and still move on
+I can carry both the pain
+
+Tell my heart it did its best
+Tell my shadow, "Come and rest"
+I'm still here
+I'm still singing`,
+  "RIDE THROUGH FIRE": `I was born on a broken road
+With nothing but a restless soul
+Dust on my boots, blood on my name
+Mama said boy, don't chase that flame
+
+But the night kept calling my heart out loud
+So I left that quiet little town
+I don't fear the storm, I don't fear the pain
+I've danced with lightning in the pouring rain
+
+If I fall tonight, let the world know why
+I lived like I was born to fly
+There's a fire in my chest that I can't tame
+And it calls my name
+
+We ride through fire, we don't break
+No chains can hold what we can't shake
+If this is the edge, then I'm all in
+I was never meant to play it safe
+We ride through fire, side by side
+With nothing left but the open sky
+And if we fall, we fall alive
+Burning bright till the last goodbye
+
+Every scar I got is a story told
+Every mile made my blood turn gold
+I don't ask forgiveness for the storm I bring
+I just let my freedom sing
+
+We ride through fire, no regret
+No fear, no debt, no "what comes next"
+Just a heart that won't forget
+What it means to live unbroken yet
+
+If I disappear into the night
+Tell them I didn't run from life
+I ran toward it…
+
+We ride through fire, till the end
+No turning back, no need to bend
+We are the storm, we are the flame
+And nothing will ever tame our name
+
+I was born on a broken road…
+But I made it mine.`,
+  "KOCAMDA KOCAM": `Sabah kalkar, homurdanır
+Ortada durmadan dolaşır
+Bir bakışıyla, bir duruşuyla
+Elim ayağıma dolanır
+
+Benim adam çekilir dert değil
+Ben sürerim kırmızı ojeyi
+Salına salına dönsem etrafında
+Belki vuslat başka bahara
+
+Ah benim kocamda kocam
+Kocam benim, aslan kocam
+Bazen delirtiyor ama
+Onsuz da olmuyor ha
+
+Akşam gelir eve, açar sohbeti
+Kafası karışık ama, belli niyeti
+Ha gayret, ha gayret
+Bitecek bu dert de elbet
+
+Hır gür olur, takışırız
+İki dakikaya barışırız
+Samanlık seyran olur
+Dertlerimiz yalan olur
+
+Darbukalar çalsın
+Düşmanlar çatlasın
+Göbekleri atalım
+Bir sağa bir sola
+Karı koca çatlatalım
+
+Ah benim kocamda kocam
+Kocam benim, aslan kocam
+Bir sağa bir sola sallan
+Bu şarkıyla herkes oynar candan`,
+  "KARİMDA KARİM": `Takmış kafayı ben güzel miyim
+Ne desem bilmem, üzer miyim
+Doğru desem olmaz
+Yalan söylesem durmaz
+Ah be bu kadın kül yutmaz
+
+Aşağı tükürsem sakal
+Yukarı tükürsem bıyık
+Ruhum oldu bayık bayık
+İçim kıpır kıpır
+Ruhum fıkır fıkır
+Gel de içme, lıkır lıkır
+
+Ah be karım! Karımda karım
+Çatlattırsın adamı
+Susmadın ki bir, benim öbür yarım
+Bin söyler, bir susar
+Sonra da "Ne yaptım ki?" diye sorar
+
+Çekilecek dert değil ama
+Halimden biraz anlasana
+Yol uzun, hayat kısa
+Geçmez bir ömür bu dayatmayla
+
+Bir sağa giderim, "Nereye?" dersin
+Sola bakarım, "Kime?" dersin
+Kapıdan çıksam, peşimde nefesin
+Seviyorum canım, seviyorsun ama
+Başımın etini yersin!
+
+Ah be karım! Karım da karım
+Çatlattırsın adamı
+Susmadın ki bir, benim öbür yarım
+Bin söyler, bir susar
+Sonra da "Ne yaptım ki?" diye sorar`,
+  "NEON LULLABY": `Momma's lullaby… on the golden skies
+
+Walking Broadway under golden skies
+Turkish blood dancing with Tennessee nights
+Mirror cracks, my face splits in two
+Who am I now, between the old and the new
+
+I'm breaking, I'm blooming, torn in between
+Real me hiding behind the screen
+Roots in Anatolia, glow in my veins
+Glitch in my soul, but I still feel the pain
+
+Neon lullaby, hold me through the night
+Lost between two worlds under fractured light
+Golden skies fading as I try to survive
+Momma's lullaby… keeps my soul alive
+
+Memories flicker like broken code
+Father's voice lost in the overload
+Half of me here, half a world away
+This city's beautiful, but I'm lost in the gray
+
+You are here too
+I am here too
+
+If I fade tonight, will you still hear me
+If I glitch again, can you still feel me
+Half of me burning, half of me blue
+I'm stuck in the middle… but I'm reaching for you
+
+Neon lullaby, hold me through the night
+Lost between two worlds under fractured light
+Golden skies fading as I try to survive
+Momma's lullaby… keeps my soul alive`,
+  "OLD VINYL HALO": `I found your name in the sleeve
+On a cracked old record crate
+Dust on the corners of July
+And the bruise of yesterday
+
+You said change is just a door
+I said change can break a home
+Now the rooms are rearranging
+But I'm still not standing alone
+
+I've got fire in my hands
+And your laugh in my chest
+I won't bow to what they want
+I won't let this heart rest
+
+Old vinyl halo
+Keep me close
+Old vinyl halo
+I still glow
+Love turned hard
+Still I rise
+Old vinyl halo, in my eyes
+
+My city wore a tired face
+With a banner in the rain
+We were singing through the sirens
+For the wounded and the chained
+
+You held my arm through the noise
+Said "don't let it make you small"
+So I learned my scars can speak up
+And my silence can be a wall
+
+If I lose my way tonight
+Sing my name back slow
+I'm a storm with a soft heart
+And a road I still don't know
+
+We were dust, we were thunder
+We were hurt, we were hope
+Now I wear the whole wide fracture
+Like a rope around my throat
+
+Old vinyl halo
+Let it ring
+Old vinyl halo
+Everything`
+};
+function openLyrics(title) {
+  const text = lyricsDB[title];
+  if (!text) return;
+  document.getElementById('lyricsTitle').textContent = title;
+  document.getElementById('lyricsBody').textContent = text;
+  document.getElementById('lyricsOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLyrics() {
+  document.getElementById('lyricsOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLyrics(); });
+</script>
 </body>
 </html
