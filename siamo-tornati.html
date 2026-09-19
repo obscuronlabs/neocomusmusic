@@ -1,0 +1,543 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Siamo Tornati</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f1e6;
+    --surface:#ffffff;
+    --ink:#1b2a2f;
+    --ink-soft:#5b6a68;
+    --accent:#c1502e;
+    --accent-ink:#fff8f0;
+    --gold:#a9803f;
+    --line:#ddd3c0;
+    --sea:#152a30;
+    --sea-ink:#ece4d4;
+    font-size:16px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#11181a;
+      --surface:#172124;
+      --ink:#ece6d9;
+      --ink-soft:#9fada8;
+      --accent:#e2723f;
+      --accent-ink:#12181a;
+      --gold:#cda766;
+      --line:#2a3438;
+      --sea:#0c1416;
+      --sea-ink:#ece6d9;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#11181a;
+    --surface:#172124;
+    --ink:#ece6d9;
+    --ink-soft:#9fada8;
+    --accent:#e2723f;
+    --accent-ink:#12181a;
+    --gold:#cda766;
+    --line:#2a3438;
+    --sea:#0c1416;
+    --sea-ink:#ece6d9;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    padding-inline:0;
+  }
+  .wrap{max-width:640px; margin-inline:auto; padding-inline:20px;}
+  h1,h2,.display{
+    font-family:"Fraunces", Georgia, "Times New Roman", serif;
+    text-wrap:balance;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{display:block;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    min-height:0;
+    background:var(--sea);
+    color:var(--sea-ink);
+    overflow:hidden;
+  }
+  .hero img{
+    width:100%;
+    height:min(78vh, 620px);
+    object-fit:cover;
+    object-position:50% 42%;
+    opacity:0.86;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(11,20,22,0.15) 0%, rgba(11,20,22,0.35) 45%, rgba(11,20,22,0.94) 92%);
+    pointer-events:none;
+  }
+
+  /* ---------- Language switch ---------- */
+  .langswitch{
+    position:absolute;
+    top:14px; right:16px;
+    z-index:2;
+    display:flex;
+    gap:4px;
+    background:rgba(11,20,22,0.42);
+    backdrop-filter:blur(6px);
+    border-radius:999px;
+    padding:4px;
+  }
+  .langswitch button{
+    appearance:none; border:none; background:transparent;
+    color:rgba(236,228,212,0.75);
+    font-family:"Source Sans 3", sans-serif;
+    font-size:0.72rem; font-weight:600; letter-spacing:0.03em;
+    padding:6px 10px; border-radius:999px;
+    cursor:pointer;
+  }
+  .langswitch button.active{
+    background:var(--accent-ink);
+    color:var(--sea);
+  }
+
+  .hero-content{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:28px 20px 34px;
+    max-width:640px; margin-inline:auto;
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity 0.9s ease, transform 0.9s ease;
+  }
+  .hero-content.is-in{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-content{opacity:1; transform:none; transition:none;}
+  }
+  .eyebrow{
+    font-family:"Source Sans 3", sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+    margin:0 0 10px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 9vw, 3.4rem);
+    font-weight:700;
+    line-height:0.98;
+    margin:0 0 14px;
+    color:var(--sea-ink);
+  }
+  .slogan{
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.05rem, 4vw, 1.25rem);
+    color:var(--sea-ink);
+    margin:0 0 6px;
+    opacity:0.96;
+  }
+  .gloss{
+    font-size:0.86rem;
+    color:var(--sea-ink);
+    opacity:0.62;
+    margin:0 0 22px;
+    min-height:1.3em;
+  }
+
+  /* ---------- Listen CTA ---------- */
+  .listen-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--accent);
+    color:var(--accent-ink);
+    font-family:"Source Sans 3", sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    padding:14px 24px;
+    border-radius:999px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+  }
+  .listen-cta svg{flex:none;}
+
+  /* ---------- Sections ---------- */
+  section{padding-block:44px;}
+  .section-line{border-top:1px solid var(--line);}
+  .num{
+    font-family:"Fraunces", serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:0.95rem;
+    margin:0 0 8px;
+  }
+  h2{
+    font-size:1.5rem;
+    font-weight:600;
+    margin:0 0 18px;
+  }
+  p{line-height:1.62; margin:0 0 14px; max-width:34em;}
+  .lede{font-size:1.05rem;}
+  .sub{color:var(--ink-soft); font-size:0.95rem;}
+
+  /* ---------- Platform grid ---------- */
+  .platforms{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:22px;
+  }
+  .platform{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:16px 16px;
+    border-radius:12px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    text-decoration:none;
+    color:var(--ink);
+    font-weight:600;
+    font-size:0.92rem;
+  }
+  .platform.is-primary{
+    grid-column:1 / -1;
+    background:var(--sea);
+    color:var(--sea-ink);
+    border-color:var(--sea);
+  }
+  .platform.is-disabled{
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .platform-name small{
+    display:block;
+    font-weight:400;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .platform.is-primary .platform-name small{color:rgba(236,230,217,0.6);}
+  .arrow{opacity:0.55; flex:none;}
+
+  /* ---------- Submarine photo ---------- */
+  .sub-photo{
+    margin-top:22px;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .sub-photo img{
+    width:100%;
+    height:auto;
+  }
+  .sub-caption{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    margin:10px 0 0;
+  }
+
+  /* ---------- Book block ---------- */
+  .book{
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+  }
+  .book img{
+    width:96px;
+    height:auto;
+    border-radius:6px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    flex:none;
+  }
+  @media (max-width:420px){
+    .book{gap:14px;}
+    .book img{width:76px;}
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding-block:32px 40px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .brand{
+    font-family:"Fraunces", serif; font-weight:600; font-size:0.95rem;
+  }
+  .brand a{
+    text-decoration:underline;
+    text-underline-offset:2px;
+  }
+  .credit{color:var(--ink-soft); font-size:0.82rem;}
+  .tech-row{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    display:flex;
+    gap:6px;
+    align-items:baseline;
+  }
+  .tech-row a{
+    color:var(--ink-soft);
+    font-weight:600;
+    text-decoration:underline;
+    text-underline-offset:2px;
+  }
+</style>
+
+<div class="hero">
+  <img src="assets/siamo-tornati/hero.jpg" alt="Periscope view of Mount Etna from the sea">
+
+  <div class="langswitch" role="tablist" aria-label="Language">
+    <button type="button" data-setlang="tr" class="active">TR</button>
+    <button type="button" data-setlang="en">EN</button>
+    <button type="button" data-setlang="it">IT</button>
+    <button type="button" data-setlang="sq">SQ</button>
+  </div>
+
+  <div class="hero-content" id="heroContent">
+    <p class="eyebrow" data-i18n="eyebrow"></p>
+    <h1>Siamo&nbsp;Tornati</h1>
+    <p class="slogan">&ldquo;Noi siamo tornati&hellip; ma voi, quando tornate?&rdquo;</p>
+    <p class="gloss" data-i18n="gloss"></p>
+    <a class="listen-cta" href="#listen" id="heroCta">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <span data-i18n="ctaLabel"></span>
+    </a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <p class="num">I.</p>
+    <h2 data-i18n="s0Title"></h2>
+    <p class="lede" data-i18n="s0Lede"></p>
+    <div class="sub-photo">
+      <img src="assets/siamo-tornati/submarine.jpg" alt="A Turkish Navy submarine underway on the surface">
+    </div>
+    <p class="sub-caption" data-i18n="s0Caption"></p>
+  </section>
+
+  <section class="section-line">
+    <p class="num">II.</p>
+    <h2 data-i18n="s1Title"></h2>
+    <p class="lede" data-i18n="s1Lede"></p>
+  </section>
+
+  <section class="section-line" id="listen">
+    <p class="num">III.</p>
+    <h2 data-i18n="s2Title"></h2>
+    <p class="sub" data-i18n="s2Sub"></p>
+    <div class="platforms">
+      <a class="platform is-primary is-disabled" href="#" data-platform="spotify">
+        <span class="platform-name">Spotify<small data-i18n="soon"></small></span>
+        <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="platform is-disabled" href="#" data-platform="youtube">
+        <span class="platform-name">YouTube Music<small data-i18n="soon"></small></span>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="platform is-disabled" href="#" data-platform="apple">
+        <span class="platform-name">Apple Music<small data-i18n="soon"></small></span>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="platform is-disabled" href="#" data-platform="amazon">
+        <span class="platform-name">Amazon Music<small data-i18n="soon"></small></span>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="section-line">
+    <p class="num">IV.</p>
+    <h2 data-i18n="s3Title"></h2>
+    <div class="book">
+      <img src="assets/siamo-tornati/hero.jpg" alt="Siamo Tornati book cover detail">
+      <div>
+        <p data-i18n="s3Lede"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-line">
+    <p class="num">V.</p>
+    <h2 data-i18n="s4Title"></h2>
+    <p class="sub" data-i18n="s4Sub"></p>
+    <a class="listen-cta" href="index.html#music">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13M9 9l12-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM18 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
+      <span data-i18n="s4Cta"></span>
+    </a>
+  </section>
+
+  <footer>
+    <div class="footer-row">
+      <span class="brand">Neo Comus Music &middot; <a href="https://neocomusmusic.com">neocomusmusic.com</a></span>
+      <span class="credit">Barbaros &amp; Olivia Oya Kaptan &middot; 2026</span>
+    </div>
+    <div class="tech-row">
+      <span data-i18n="techPartner"></span>
+      <a href="https://obscuronlabs.com">obscuronlabs.com</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // ---- Wire real links here the moment they exist. No other change needed. ----
+  var LINKS = {
+    spotify: null,   // e.g. "https://open.spotify.com/track/XXXXXXXXXXXXXXXXXXXXXX"
+    youtube: null,   // e.g. "https://music.youtube.com/watch?v=XXXXXXXXXXX"
+    apple:   null,   // e.g. "https://music.apple.com/tr/album/siamo-tornati/XXXXXXXXXX"
+    amazon:  null    // e.g. "https://music.amazon.com/albums/XXXXXXXXXXXXXXXXXXXX"
+  };
+
+  var TR = {
+    eyebrow: "Bir şarkı &middot; bir anı &middot; bir dönüş",
+    gloss: "Geri d&ouml;nd&uuml;k&hellip; ya siz ne zaman d&ouml;neceksiniz?",
+    ctaLabel: "Dinle",
+    s0Title: "Bir Denizle Başladı",
+    s0Lede: "Bu hikâye bir şarkıyla değil, bir bağla da değil; bir denizle başladı. 1990'ların başında, Ege'den Akdeniz'e ilerleyen bir Türk Denizaltısının içinde, İtalya toprağına ilk kez ayak basacağından henüz habersiz genç bir Astsubay vardı. Adı Barbaros'tu.",
+    s0Caption: "Bir Türk Denizaltısı, açık denizde.",
+    s1Title: "Deden Bir Bağ Dikti",
+    s1Lede: "Deden bir bağ dikti. Belki sen hiç üzüm toplamadın. Belki sabahın erken saatlerinde toprağın üzerine çöken serinliği, güneş yükseldikçe yaprakların arasından gelen o kokuyu hiç duymadın. Belki ellerin hiçbir zaman bir asmanın gövdesine değmedi. Belki dedenin yürüdüğü yolu bilmiyorsun bile. Belki artık o topraklardan yüzlerce, hatta binlerce kilometre uzakta yaşıyorsun; başka bir şehirde, başka bir ülkede, belki başka bir dilde.",
+    s2Title: "Dinle",
+    s2Sub: "Yayın linkleri hazır olduğunda burada aktif olacak.",
+    soon: "Yakında",
+    s3Title: "Kitap",
+    s3Lede: "&#350;arkının do&#287;du&#287;u hik&acirc;ye &mdash; denizaltı, ba&#287;, Sicilya ve d&ouml;n&uuml;&#351; &mdash; &#351;imdi bir kitapta. T&uuml;rk&ccedil;e, İngilizce, İtalyanca ve Arnavut&ccedil;a baskılarıyla.",
+    s4Title: "Diğer Şarkılarımız",
+    s4Sub: "Neo Comus Music kataloğundaki diğer şarkıları keşfedin.",
+    s4Cta: "Tüm Şarkılar",
+    techPartner: "Teknoloji ortağı:"
+  };
+
+  var EN = {
+    eyebrow: "A song &middot; a memoir &middot; a return",
+    gloss: "We have returned&hellip; but when are you returning?",
+    ctaLabel: "Listen",
+    s0Title: "It Began With a Sea",
+    s0Lede: "This story began not with a song, and not with a vineyard, but with a sea. In the early 1990s, inside a Turkish submarine making its way from the Aegean toward the Mediterranean, there was a young petty officer who did not yet know he was about to set foot on Italian soil for the first time. His name was Barbaros.",
+    s0Caption: "A Turkish Navy submarine, underway at sea.",
+    s1Title: "Your Grandfather Planted a Vineyard",
+    s1Lede: "Your grandfather planted a vineyard. Perhaps you have never picked grapes. Perhaps you have never felt the coolness settling over the soil in the early morning, or caught that scent rising through the leaves as the sun climbs higher. Perhaps your hands have never touched the trunk of a vine. Perhaps you do not even know the path your grandfather once walked. Perhaps you now live hundreds, even thousands, of kilometres from that land&mdash;in another city, another country, perhaps even another language.",
+    s2Title: "Listen",
+    s2Sub: "Links go live here the moment the release drops.",
+    soon: "Coming soon",
+    s3Title: "The Book",
+    s3Lede: "The story behind the song &mdash; the submarine, the vineyard, Sicily, and the return &mdash; is now a book, in Turkish, English, Italian and Albanian editions.",
+    s4Title: "More From Us",
+    s4Sub: "Explore the rest of the Neo Comus Music catalogue.",
+    s4Cta: "All Songs",
+    techPartner: "Technology partner:"
+  };
+
+  var IT = {
+    eyebrow: "Una canzone &middot; una memoria &middot; un ritorno",
+    gloss: "",
+    ctaLabel: "Ascolta",
+    s0Title: "Cominciò con un mare",
+    s0Lede: "Questa storia non comincia con una canzone, e nemmeno con una vigna, ma con un mare. All&rsquo;inizio degli anni Novanta, dentro un sommergibile turco che procedeva dall&rsquo;Egeo verso il Mediterraneo, c&rsquo;era un giovane sottufficiale che ancora non sapeva che avrebbe messo piede per la prima volta sul suolo italiano. Si chiamava Barbaros.",
+    s0Caption: "Un sommergibile della Marina turca, in navigazione.",
+    s1Title: "Tuo nonno piantò una vigna",
+    s1Lede: "Tuo nonno piantò una vigna. Forse tu non hai mai raccolto l&rsquo;uva. Forse non hai mai sentito il fresco che, nelle prime ore del mattino, si posa sulla terra, né quel profumo che sale tra le foglie quando il sole comincia a farsi alto. Forse le tue mani non hanno mai toccato il tronco di una vite. Forse non conosci neppure il sentiero che percorreva tuo nonno. Forse oggi vivi a centinaia, persino a migliaia di chilometri da quelle terre: in un&rsquo;altra città, in un altro Paese, forse in un&rsquo;altra lingua.",
+    s2Title: "Ascolta",
+    s2Sub: "I link saranno attivi qui non appena il brano sarà pubblicato.",
+    soon: "Presto",
+    s3Title: "Il libro",
+    s3Lede: "La storia dietro la canzone &mdash; il sommergibile, la vigna, la Sicilia e il ritorno &mdash; è ora un libro, in edizione turca, inglese, italiana e albanese.",
+    s4Title: "Altre Nostre Canzoni",
+    s4Sub: "Scopri il resto del catalogo di Neo Comus Music.",
+    s4Cta: "Tutte le Canzoni",
+    techPartner: "Partner tecnologico:"
+  };
+
+  var SQ = {
+    eyebrow: "Një këngë &middot; një kujtim &middot; një kthim",
+    gloss: "Ne u kthyem&hellip; po ju, kur ktheheni?",
+    ctaLabel: "Dëgjo",
+    s0Title: "Filloi me një det",
+    s0Lede: "Kjo histori nuk filloi me një këngë, as me një vresht, po me një det. Në fillim të viteve 1990, brenda një nëndetëseje turke që lëvizte nga Egjeu drejt Mesdheut, ishte një nënoficer i ri që ende nuk e dinte se së shpejti do të shkelte për herë të parë në tokën italiane. Quhej Barbaros.",
+    s0Caption: "Një nëndetëse e Marinës turke, në lundrim.",
+    s1Title: "Gjyshi yt mbolli një vresht",
+    s1Lede: "Gjyshi yt mbolli një vresht. Ndoshta ti nuk ke mbledhur kurrë rrush. Ndoshta nuk e ke ndier freskinë që bie mbi tokë herët në mëngjes, as atë aromë që vjen mes gjetheve kur dielli ngrihet. Ndoshta duart e tua nuk kanë prekur kurrë trungun e një hardhie. Ndoshta nuk e di as shtegun ku ecte gjyshi yt. Ndoshta sot jeton qindra, madje mijëra kilometra larg atyre tokave; në një qytet tjetër, në një shtet tjetër, ndoshta edhe në një gjuhë tjetër.",
+    s2Title: "Dëgjo",
+    s2Sub: "Lidhjet do të aktivizohen këtu sapo kënga të publikohet.",
+    soon: "Së shpejti",
+    s3Title: "Libri",
+    s3Lede: "Historia pas këngës &mdash; nëndetësja, vreshti, Sicilia dhe kthimi &mdash; tani është një libër, në botime turke, angleze, italiane dhe shqipe.",
+    s4Title: "Këngët Tona të Tjera",
+    s4Sub: "Zbuloni pjesën tjetër të katalogut të Neo Comus Music.",
+    s4Cta: "Të Gjitha Këngët",
+    techPartner: "Partneri teknologjik:"
+  };
+
+  var DICT = { tr: TR, en: EN, it: IT, sq: SQ };
+
+  function applyLang(lang){
+    var d = DICT[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if (d[key] !== undefined) el.innerHTML = d[key];
+    });
+    document.querySelectorAll('.langswitch button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-setlang') === lang);
+    });
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('st-lang', lang); } catch(e){}
+  }
+
+  document.querySelectorAll('.langswitch button').forEach(function(b){
+    b.addEventListener('click', function(){ applyLang(b.getAttribute('data-setlang')); });
+  });
+
+  var startLang = 'tr';
+  try {
+    var saved = localStorage.getItem('st-lang');
+    if (saved && DICT[saved]) startLang = saved;
+  } catch(e){}
+  applyLang(startLang);
+
+  document.querySelectorAll('[data-platform]').forEach(function(el){
+    var key = el.getAttribute('data-platform');
+    var url = LINKS[key];
+    if (url) {
+      el.href = url;
+      el.classList.remove('is-disabled');
+      el.querySelector('small').textContent = '→';
+    }
+  });
+
+  var hero = document.getElementById('heroCta');
+  if (LINKS.spotify) {
+    hero.href = LINKS.spotify;
+    hero.removeAttribute('id');
+  }
+
+  // ---- Staged reveal: periscope image shows alone first, then title/song fade in ----
+  var heroContent = document.getElementById('heroContent');
+  var revealDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1000;
+  setTimeout(function(){ heroContent.classList.add('is-in'); }, revealDelay);
+</script>
+
+</body></html>
