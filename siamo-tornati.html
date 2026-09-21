@@ -373,7 +373,7 @@
     <h2 data-i18n="s2Title"></h2>
     <p class="sub" data-i18n="s2Sub"></p>
     <div class="preview-video">
-      <video controls preload="metadata" poster="assets/siamo-tornati/hero.jpg">
+      <video id="listenPreviewVideo" controls preload="metadata" poster="assets/siamo-tornati/hero.jpg">
         <source src="assets/siamo-tornati/teaser.mp4" type="video/mp4">
       </video>
     </div>
@@ -616,6 +616,13 @@
   });
 
   var hero = document.getElementById('heroCta');
+  var listenPreviewVideo = document.getElementById('listenPreviewVideo');
+  if (hero && listenPreviewVideo) {
+    hero.addEventListener('click', function(){
+      var p = listenPreviewVideo.play();
+      if (p && p.catch) p.catch(function(){});
+    });
+  }
   if (LINKS.spotify) {
     hero.href = LINKS.spotify;
     hero.removeAttribute('id');
