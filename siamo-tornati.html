@@ -68,12 +68,14 @@
     color:var(--sea-ink);
     overflow:hidden;
   }
-  .hero img{
+  .hero img,
+  .hero video{
     width:100%;
     height:min(78vh, 620px);
     object-fit:cover;
     object-position:50% 42%;
     opacity:0.86;
+    display:block;
   }
   .hero::after{
     content:"";
@@ -191,6 +193,25 @@
   .lede{font-size:1.05rem;}
   .sub{color:var(--ink-soft); font-size:0.95rem;}
 
+  /* ---------- Preview video ---------- */
+  .preview-video{
+    margin-top:20px;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--sea);
+  }
+  .preview-video video{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  .preview-caption{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    margin:10px 0 0;
+  }
+
   /* ---------- Platform grid ---------- */
   .platforms{
     display:grid;
@@ -306,7 +327,9 @@
 </style>
 
 <div class="hero">
-  <img src="assets/siamo-tornati/hero.jpg" alt="Periscope view of Mount Etna from the sea">
+  <video autoplay muted loop playsinline poster="assets/siamo-tornati/hero.jpg" aria-hidden="true">
+    <source src="assets/siamo-tornati/teaser.mp4" type="video/mp4">
+  </video>
 
   <div class="langswitch" role="tablist" aria-label="Language">
     <button type="button" data-setlang="tr" class="active">TR</button>
@@ -349,6 +372,12 @@
     <p class="num">III.</p>
     <h2 data-i18n="s2Title"></h2>
     <p class="sub" data-i18n="s2Sub"></p>
+    <div class="preview-video">
+      <video controls preload="metadata" poster="assets/siamo-tornati/hero.jpg">
+        <source src="assets/siamo-tornati/teaser.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="preview-caption" data-i18n="s2Preview"></p>
     <div class="platforms">
       <a class="platform is-primary is-disabled" href="#" data-platform="spotify">
         <span class="platform-name">Spotify<small data-i18n="soon"></small></span>
@@ -423,6 +452,7 @@
     s1Lede: "Deden bir bağ dikti. Belki sen hiç üzüm toplamadın. Belki sabahın erken saatlerinde toprağın üzerine çöken serinliği, güneş yükseldikçe yaprakların arasından gelen o kokuyu hiç duymadın. Belki ellerin hiçbir zaman bir asmanın gövdesine değmedi. Belki dedenin yürüdüğü yolu bilmiyorsun bile. Belki artık o topraklardan yüzlerce, hatta binlerce kilometre uzakta yaşıyorsun; başka bir şehirde, başka bir ülkede, belki başka bir dilde.",
     s2Title: "Dinle",
     s2Sub: "Yayın linkleri hazır olduğunda burada aktif olacak.",
+    s2Preview: "İlk önizleme &mdash; şarkının açılışı, periskoptan.",
     soon: "Yakında",
     s3Title: "Kitap",
     s3Lede: "&#350;arkının do&#287;du&#287;u hik&acirc;ye &mdash; denizaltı, ba&#287;, Sicilya ve d&ouml;n&uuml;&#351; &mdash; &#351;imdi bir kitapta. T&uuml;rk&ccedil;e, İngilizce, İtalyanca ve Arnavut&ccedil;a baskılarıyla.",
@@ -443,6 +473,7 @@
     s1Lede: "Your grandfather planted a vineyard. Perhaps you have never picked grapes. Perhaps you have never felt the coolness settling over the soil in the early morning, or caught that scent rising through the leaves as the sun climbs higher. Perhaps your hands have never touched the trunk of a vine. Perhaps you do not even know the path your grandfather once walked. Perhaps you now live hundreds, even thousands, of kilometres from that land&mdash;in another city, another country, perhaps even another language.",
     s2Title: "Listen",
     s2Sub: "Links go live here the moment the release drops.",
+    s2Preview: "First preview &mdash; the song's opening, through the periscope.",
     soon: "Coming soon",
     s3Title: "The Book",
     s3Lede: "The story behind the song &mdash; the submarine, the vineyard, Sicily, and the return &mdash; is now a book, in Turkish, English, Italian and Albanian editions.",
@@ -463,6 +494,7 @@
     s1Lede: "Tuo nonno piantò una vigna. Forse tu non hai mai raccolto l&rsquo;uva. Forse non hai mai sentito il fresco che, nelle prime ore del mattino, si posa sulla terra, né quel profumo che sale tra le foglie quando il sole comincia a farsi alto. Forse le tue mani non hanno mai toccato il tronco di una vite. Forse non conosci neppure il sentiero che percorreva tuo nonno. Forse oggi vivi a centinaia, persino a migliaia di chilometri da quelle terre: in un&rsquo;altra città, in un altro Paese, forse in un&rsquo;altra lingua.",
     s2Title: "Ascolta",
     s2Sub: "I link saranno attivi qui non appena il brano sarà pubblicato.",
+    s2Preview: "Prima anteprima &mdash; l'inizio della canzone, dal periscopio.",
     soon: "Presto",
     s3Title: "Il libro",
     s3Lede: "La storia dietro la canzone &mdash; il sommergibile, la vigna, la Sicilia e il ritorno &mdash; è ora un libro, in edizione turca, inglese, italiana e albanese.",
@@ -483,6 +515,7 @@
     s1Lede: "Gjyshi yt mbolli një vresht. Ndoshta ti nuk ke mbledhur kurrë rrush. Ndoshta nuk e ke ndier freskinë që bie mbi tokë herët në mëngjes, as atë aromë që vjen mes gjetheve kur dielli ngrihet. Ndoshta duart e tua nuk kanë prekur kurrë trungun e një hardhie. Ndoshta nuk e di as shtegun ku ecte gjyshi yt. Ndoshta sot jeton qindra, madje mijëra kilometra larg atyre tokave; në një qytet tjetër, në një shtet tjetër, ndoshta edhe në një gjuhë tjetër.",
     s2Title: "Dëgjo",
     s2Sub: "Lidhjet do të aktivizohen këtu sapo kënga të publikohet.",
+    s2Preview: "Paraqitja e parë &mdash; fillimi i këngës, nga periskopi.",
     soon: "Së shpejti",
     s3Title: "Libri",
     s3Lede: "Historia pas këngës &mdash; nëndetësja, vreshti, Sicilia dhe kthimi &mdash; tani është një libër, në botime turke, angleze, italiane dhe shqipe.",
