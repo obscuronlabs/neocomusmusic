@@ -407,6 +407,24 @@
         <p data-i18n="s3Lede"></p>
       </div>
     </div>
+    <div class="platforms">
+      <a class="platform is-disabled" href="#" data-book-platform="tr" target="_blank" rel="noopener">
+        <span class="platform-name"><span data-i18n="bookTr"></span><small data-i18n="soon"></small></span>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="platform is-disabled" href="#" data-book-platform="en" target="_blank" rel="noopener">
+        <span class="platform-name"><span data-i18n="bookEn"></span><small data-i18n="soon"></small></span>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="platform is-disabled" href="#" data-book-platform="it" target="_blank" rel="noopener">
+        <span class="platform-name"><span data-i18n="bookIt"></span><small data-i18n="soon"></small></span>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="platform is-disabled" href="#" data-book-platform="sq" target="_blank" rel="noopener">
+        <span class="platform-name"><span data-i18n="bookSq"></span><small data-i18n="soon"></small></span>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
   </section>
 
   <section class="section-line">
@@ -441,6 +459,16 @@
     amazon:  null    // e.g. "https://music.amazon.com/albums/XXXXXXXXXXXXXXXXXXXX"
   };
 
+  // Book purchase links, one per language edition. Fill in once each
+  // edition is live for sale (Amazon for EN/IT; an Ingram-distributed
+  // retailer link for TR/SQ) — these point to the retailers, not to us.
+  var BOOK_LINKS = {
+    tr: null,   // e.g. "https://www.amazon.com/dp/XXXXXXXXXX" or another retailer once TR is live
+    en: null,   // e.g. "https://www.amazon.com/dp/XXXXXXXXXX"
+    it: null,   // e.g. "https://www.amazon.it/dp/XXXXXXXXXX"
+    sq: null    // e.g. a retailer link once SQ is live
+  };
+
   var TR = {
     eyebrow: "Bir şarkı &middot; bir anı &middot; bir dönüş",
     gloss: "Geri d&ouml;nd&uuml;k&hellip; ya siz ne zaman d&ouml;neceksiniz?",
@@ -456,6 +484,10 @@
     soon: "Yakında",
     s3Title: "Kitap",
     s3Lede: "&#350;arkının do&#287;du&#287;u hik&acirc;ye &mdash; denizaltı, ba&#287;, Sicilya ve d&ouml;n&uuml;&#351; &mdash; &#351;imdi bir kitapta. T&uuml;rk&ccedil;e, İngilizce, İtalyanca ve Arnavut&ccedil;a baskılarıyla.",
+    bookTr: "Türkçe Baskı",
+    bookEn: "İngilizce Baskı",
+    bookIt: "İtalyanca Baskı",
+    bookSq: "Arnavutça Baskı",
     s4Title: "Diğer Şarkılarımız",
     s4Sub: "Neo Comus Music kataloğundaki diğer şarkıları keşfedin.",
     s4Cta: "Tüm Şarkılar",
@@ -477,6 +509,10 @@
     soon: "Coming soon",
     s3Title: "The Book",
     s3Lede: "The story behind the song &mdash; the submarine, the vineyard, Sicily, and the return &mdash; is now a book, in Turkish, English, Italian and Albanian editions.",
+    bookTr: "Turkish Edition",
+    bookEn: "English Edition",
+    bookIt: "Italian Edition",
+    bookSq: "Albanian Edition",
     s4Title: "More From Us",
     s4Sub: "Explore the rest of the Neo Comus Music catalogue.",
     s4Cta: "All Songs",
@@ -498,6 +534,10 @@
     soon: "Presto",
     s3Title: "Il libro",
     s3Lede: "La storia dietro la canzone &mdash; il sommergibile, la vigna, la Sicilia e il ritorno &mdash; è ora un libro, in edizione turca, inglese, italiana e albanese.",
+    bookTr: "Edizione turca",
+    bookEn: "Edizione inglese",
+    bookIt: "Edizione italiana",
+    bookSq: "Edizione albanese",
     s4Title: "Altre Nostre Canzoni",
     s4Sub: "Scopri il resto del catalogo di Neo Comus Music.",
     s4Cta: "Tutte le Canzoni",
@@ -519,6 +559,10 @@
     soon: "Së shpejti",
     s3Title: "Libri",
     s3Lede: "Historia pas këngës &mdash; nëndetësja, vreshti, Sicilia dhe kthimi &mdash; tani është një libër, në botime turke, angleze, italiane dhe shqipe.",
+    bookTr: "Botimi turqisht",
+    bookEn: "Botimi anglisht",
+    bookIt: "Botimi italisht",
+    bookSq: "Botimi shqip",
     s4Title: "Këngët Tona të Tjera",
     s4Sub: "Zbuloni pjesën tjetër të katalogut të Neo Comus Music.",
     s4Cta: "Të Gjitha Këngët",
@@ -554,6 +598,16 @@
   document.querySelectorAll('[data-platform]').forEach(function(el){
     var key = el.getAttribute('data-platform');
     var url = LINKS[key];
+    if (url) {
+      el.href = url;
+      el.classList.remove('is-disabled');
+      el.querySelector('small').textContent = '→';
+    }
+  });
+
+  document.querySelectorAll('[data-book-platform]').forEach(function(el){
+    var key = el.getAttribute('data-book-platform');
+    var url = BOOK_LINKS[key];
     if (url) {
       el.href = url;
       el.classList.remove('is-disabled');
