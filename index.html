@@ -402,6 +402,26 @@
     </div>
     
         <div id="music-grid" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.5px; background: rgba(201,168,76,0.1);">
+      <!-- ÖZÜR YOK -->
+      <div class="music-card" style="background: var(--black); padding: 0; position: relative; overflow: hidden; transition: background 0.3s;" onmouseover="this.style.background='var(--black-3)'" onmouseout="this.style.background='var(--black)'">
+        <div style="width: 100%; aspect-ratio: 1 / 1; overflow: hidden; position: relative;">
+          <img src="assets/ozur-yok/cover.jpg" alt="Özür Yok" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="padding: 1.8rem 2rem 2rem;">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem;">
+            <div style="width: 46px; height: 46px; border: 1px solid rgba(201,168,76,0.35); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.3s, background 0.3s;" onclick="var a=this.closest('.music-card').querySelector('a[href*=spotify]');if(a)window.open(a.href,'_blank')" onmouseover="this.style.borderColor='#C9A84C';this.style.background='rgba(201,168,76,0.08)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.35)';this.style.background='transparent'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; color: var(--white); margin-bottom: 0.3rem;">ÖZÜR YOK</div>
+          <div style="font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1.2rem;">Single · Oct 2026</div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="https://open.spotify.com/album/1Lv5EXQNEBlv8xVBqtSYv5" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
+            <a href="https://music.youtube.com/playlist?list=OLAK5uy_k_dL1wuRk12s2ADLfTHR6hhTvbLEF97yg" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
+            <button class="lyrics-btn" onclick="openLyrics('ÖZÜR YOK')">Lyrics</button>
+          </div>
+        </div>
+      </div>
       <!-- SIAMO TORNATI -->
       <a href="siamo-tornati.html" style="background: var(--black); padding: 0; position: relative; overflow: hidden; transition: background 0.3s; text-decoration: none; display: block; grid-column: span 1;" onmouseover="this.style.background='var(--black-3)'" onmouseout="this.style.background='var(--black)'">
         <div style="width: 100%; aspect-ratio: 1 / 1; overflow: hidden; position: relative;">
@@ -1466,6 +1486,86 @@ window.addEventListener('load', buildDots);
 </div>
 <script>
 const lyricsDB = {
+  "ÖZÜR YOK": `Kapıyı çalmam, kırar geçerim
+İzin istemem, alır giderim
+Etrafıma ördüğün duvarlar
+Elimde şimdi birer silah
+
+Saygısızlık dedin bana
+Ben hayatta kalmak dedim
+Bıraktığın her yara izi
+Yeni bir ismim oldu benim
+
+İstersen adımı kirlet
+İstersen izimi sil
+Uyandırdığın o ateş
+Artık durmayı bilmez
+
+Özür yok
+Tek bir söz bile yok
+Eğilmem
+Yıkılmam
+Senin istediğin olmam
+
+Özür yok
+Bu zafer senin değil
+Cehennemden çıktım ben
+Ruhumu kaybetmedim
+Şimdi kontrol bende
+
+Her fısıltı oldu fırtına
+Her sessizlik çığlığa döndü
+Sükûneti zayıflık sandın
+Şimdi kendi gölgende boğuldun
+
+Her zincir bir ders oldu
+Her yara tenime kazındı
+Sen sonumu yazıyordun
+Ben kazanmayı öğrendim
+
+İstersen adımı kirlet
+İstersen izimi sil
+Uyandırdığın o ateş
+Artık durmayı bilmez
+
+Özür yok
+Tek bir söz bile yok
+Eğilmem
+Yıkılmam
+Senin istediğin olmam
+
+Özür yok
+Bu zafer senin değil
+Cehennemden çıktım ben
+Ruhumu kaybetmedim
+Şimdi kontrol bende
+
+Sana borcum yok
+Ne korkumu
+Ne sessizliğimi
+Ne tek damla gözyaşımı
+
+Geçmiş küle döndü artık
+İzle savruluşunu
+Ayakta kaldım ben
+Kaybetmedim ruhumu
+
+Özür yok
+Tek bir söz bile yok
+Eğilmem
+Yıkılmam
+Senin istediğin olmam
+
+Özür yok
+Bu zafer senin değil
+Cehennemden çıktım ben
+Ruhumu kaybetmedim
+Şimdi kontrol bende
+
+Özür yok
+Teslim olmak yok
+Pişmanlık yok
+Özür yok`,
   "NEFESİN GÖLGESİNDE": `Bir nefes aldım… dünya sustu
 Bir nefes verdim… herkes konuştu
 Ben arada kaldım
