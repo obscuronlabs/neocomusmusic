@@ -402,6 +402,27 @@
     </div>
     
         <div id="music-grid" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.5px; background: rgba(201,168,76,0.1);">
+      <!-- LIGHT ME UP -->
+      <div class="music-card" style="background: var(--black); padding: 0; position: relative; overflow: hidden; transition: background 0.3s;" onmouseover="this.style.background='var(--black-3)'" onmouseout="this.style.background='var(--black)'">
+        <div style="width: 100%; aspect-ratio: 1 / 1; overflow: hidden; position: relative;">
+          <img src="assets/light-me-up/cover.jpg" alt="Light Me Up" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="padding: 1.8rem 2rem 2rem;">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem;">
+            <div style="width: 46px; height: 46px; border: 1px solid rgba(201,168,76,0.35); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.3s, background 0.3s;" onclick="var a=this.closest('.music-card').querySelector('a[href*=spotify]');if(a)window.open(a.href,'_blank')" onmouseover="this.style.borderColor='#C9A84C';this.style.background='rgba(201,168,76,0.08)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.35)';this.style.background='transparent'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; color: var(--white); margin-bottom: 0.3rem;">LIGHT ME UP</div>
+          <div style="font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1.2rem;">Single · Oct 2026</div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="https://open.spotify.com/album/6GgJGtHTzeGMmdEJCuoF9c" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
+            <a href="https://music.youtube.com/watch?v=9sPKmaWIWRs" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
+            <a href="https://music.apple.com/us/song/light-me-up/6823574534" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Apple</a>
+            <button class="lyrics-btn" onclick="openLyrics('LIGHT ME UP')">Lyrics</button>
+          </div>
+        </div>
+      </div>
       <!-- ÖZÜR YOK -->
       <div class="music-card" style="background: var(--black); padding: 0; position: relative; overflow: hidden; transition: background 0.3s;" onmouseover="this.style.background='var(--black-3)'" onmouseout="this.style.background='var(--black)'">
         <div style="width: 100%; aspect-ratio: 1 / 1; overflow: hidden; position: relative;">
@@ -1486,6 +1507,30 @@ window.addEventListener('load', buildDots);
 </div>
 <script>
 const lyricsDB = {
+  "LIGHT ME UP": `Light me up, I'm breaking through the noise
+Hold the line, I'm rising with my voice
+Beat is burning, running in my veins
+Four bars hitting like a war-drum flame
+
+Gece çöker üstüme, ritim akar içimde
+Sözlerin yankı olur karanlığın içinde
+Adım adım yükselir nefesimdeki ateş
+Sahnede kaybolurum, ritim benim kardeş
+
+Light me up, I'm breaking through the noise
+Hold the line, I'm rising with my voice
+Beat is burning, running in my veins
+Four bars hitting like a war-drum flame
+
+Gözlerin bir fırtına, içimde kopar gece
+Kalbim hızlanır yine, ritim vurur denize
+Sözlerin keskin ama, ben daha da keskinim
+Cazın gölgesinde büyür içimdeki sesim
+
+Light me up, I'm breaking through the noise
+Hold the line, I'm rising with my voice
+Beat is burning, running in my veins
+Four bars hitting like a war-drum flame`,
   "ÖZÜR YOK": `Kapıyı çalmam, kırar geçerim
 İzin istemem, alır giderim
 Etrafıma ördüğün duvarlar
