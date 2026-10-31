@@ -402,6 +402,46 @@
     </div>
     
         <div id="music-grid" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.5px; background: rgba(201,168,76,0.1);">
+      <!-- BU GECE BİZİM MASA -->
+      <div class="music-card" style="background: var(--black); padding: 0; position: relative; overflow: hidden; transition: background 0.3s;" onmouseover="this.style.background='var(--black-3)'" onmouseout="this.style.background='var(--black)'">
+        <div style="width: 100%; aspect-ratio: 1 / 1; overflow: hidden; position: relative;">
+          <img src="assets/bu-gece-bizim-masa/cover.jpg" alt="Bu Gece Bizim Masa" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="padding: 1.8rem 2rem 2rem;">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem;">
+            <div style="width: 46px; height: 46px; border: 1px solid rgba(201,168,76,0.35); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.3s, background 0.3s;" onclick="var a=this.closest('.music-card').querySelector('a[href*=spotify]');if(a)window.open(a.href,'_blank')" onmouseover="this.style.borderColor='#C9A84C';this.style.background='rgba(201,168,76,0.08)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.35)';this.style.background='transparent'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; color: var(--white); margin-bottom: 0.3rem;">BU GECE BİZİM MASA</div>
+          <div style="font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1.2rem;">Keyfimiz Yerinde · Single · Oct 2026</div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="https://open.spotify.com/track/52gLzSy192wgn7tOlny0Wo" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
+            <a href="https://music.youtube.com/playlist?list=OLAK5uy_lXg_ryegXQDaXf0Pj_oGHGt-X4OR5A0fg" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
+            <button class="lyrics-btn" onclick="openLyrics('BU GECE BİZİM MASA')">Lyrics</button>
+          </div>
+        </div>
+      </div>
+      <!-- KÖRDÜĞÜM MASAL -->
+      <div class="music-card" style="background: var(--black); padding: 0; position: relative; overflow: hidden; transition: background 0.3s;" onmouseover="this.style.background='var(--black-3)'" onmouseout="this.style.background='var(--black)'">
+        <div style="width: 100%; aspect-ratio: 1 / 1; overflow: hidden; position: relative;">
+          <img src="assets/kordugum-masal/cover.jpg" alt="Kördüğüm Masal" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="padding: 1.8rem 2rem 2rem;">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem;">
+            <div style="width: 46px; height: 46px; border: 1px solid rgba(201,168,76,0.35); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.3s, background 0.3s;" onclick="var a=this.closest('.music-card').querySelector('a[href*=spotify]');if(a)window.open(a.href,'_blank')" onmouseover="this.style.borderColor='#C9A84C';this.style.background='rgba(201,168,76,0.08)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.35)';this.style.background='transparent'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; color: var(--white); margin-bottom: 0.3rem;">KÖRDÜĞÜM MASAL</div>
+          <div style="font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1.2rem;">Yarım Kalmış Hikaye · Single · Oct 2026</div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <a href="https://open.spotify.com/track/5VDa5wFKdiQzYtUgEUKecQ" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">Spotify</a>
+            <a href="https://music.youtube.com/playlist?list=OLAK5uy_ln6FcqBwOFVioLrMrcHgtxZ8tC_nr-7lE" target="_blank" style="font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;" onmouseover="this.style.color='#C9A84C';this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.color='';this.style.borderColor=''">YouTube</a>
+            <button class="lyrics-btn" onclick="openLyrics('KÖRDÜĞÜM MASAL')">Lyrics</button>
+          </div>
+        </div>
+      </div>
       <!-- LIGHT ME UP -->
       <div class="music-card" style="background: var(--black); padding: 0; position: relative; overflow: hidden; transition: background 0.3s;" onmouseover="this.style.background='var(--black-3)'" onmouseout="this.style.background='var(--black)'">
         <div style="width: 100%; aspect-ratio: 1 / 1; overflow: hidden; position: relative;">
@@ -1507,6 +1547,54 @@ window.addEventListener('load', buildDots);
 </div>
 <script>
 const lyricsDB = {
+  "BU GECE BİZİM MASA": `Kadehler dolsun yavaşça
+Gece çöksün masamıza
+Biraz dert, biraz kahkaha
+Hepsi yakışır dostluğumuza
+
+Sözler dökülür içimizden
+Kimse saklamaz kendinden
+Bir bakmışsın gülmüşüz yine
+Dertler erir rakı içinde
+
+Bu gece bizim masa, dünya beklesin
+Dostluk var burada, dertler sönsün
+Kaldır kadehi dostum, hayat güzel desin
+Bu gece bizim masa, keyfimiz yerinde
+
+Hafif dokunuş, ama hüzne batmıyor
+Bir eski şarkı çalar uzaktan
+Kalbimiz titrer ama kısa bir an
+Sonra biri bir laf atar ortaya
+Güleriz yine, döner dünya
+
+Bazen susarız, bazen taşarız
+Ama sonunda hep toparlanırız
+Çünkü biliriz…
+Bu masa iyileştirir bizi
+
+Bu gece bizim masa, dünya beklesin
+Dostluk var burada, dertler sönsün
+Kaldır kadehi dostum, hayat güzel desin
+Bu gece bizim masa, keyfimiz yerinde
+Bu gece bizim masa… keyfimiz yerinde`,
+  "KÖRDÜĞÜM MASAL": `Sustu şehir, lambalar yorgun ve soluk
+Gönlümde bitmeyen o bitkin yolculuk
+Sen saraylar içinde, ben tozlu sokakta
+Aynı göğe baksak da yollarımız kopuk
+
+Bir yemin ettim ki dönülmez geriye
+Aşk dediğin sığar mı bir tek cümleye
+Gözlerin uçurum, bakamam aşağı
+Düşersem yanarım, külüm kalmaz geriye
+
+Yazamaz kalem seni, kaderin kara düğümü
+Söküp atamadım içimden şu kördüğümü
+Bizim hikayemiz yarım kalmış bir masal
+Ben senin için feda ettim ömrümü
+
+Zaman dursun, dünya dönsün tersine
+Razıyım seninle gelen her bir derde`,
   "LIGHT ME UP": `Light me up, I'm breaking through the noise
 Hold the line, I'm rising with my voice
 Beat is burning, running in my veins
